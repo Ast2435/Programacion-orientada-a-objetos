@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>Práctica 4 POO</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Práctica 4</header>
+ <nav>
+    
+     <p><img src="temario-icono.png" width=95% border=5></image></p>
+     
+     <p class="derecha"><a href="TemarioPOO.html">Temario<img src="iconoPoo.png" width=65% border=5></image></a></p>
+     
+     <p><a href="MaterialPoo.html"><img src="iconoPoo.png" width=90% border=5></image></a></p>
+         
+ </nav>
+
+  <section class="envoltura">
+    <h1 class="titulo">SOBRECARGA DE FUNCIONES</h1>
+
+    <section class="interna">
+      
+      <article>
+       
+       <h1>Objetivo</h1>
+       <hr>
+       <p>Se utilizará la sobrecarga para poder crear funciones que participen de manera diferente en la programación orientada a objetos.</p>
+      <hr>
+      <h1>Actividades</h1>
+      <hr>
+      <br>
+      <p><strong>Actividad 1.</strong> Compilar y ejecutar el siguiente programa:</p>
+       <br>
+       <pre>
+       class Arbol {
+         int altura;
+         Arbol() {
+           visualizar("Plantando un retoño");
+           altura = 0;
+         }
+         Arbol(int i) {
+           visualizar("Creando un nuevo arbol que tiene "
+             + i + " metros de alto");
+           altura = i;
+         }
+         void info() {
+           visualizar("E1 arbol tiene " + altura
+             + " metros de alto");
+         }
+         void info(String s) {
+           visualizar(s + " : El arbol tiene "
+             + altura + " metros de alto");
+         }
+         static void visualizar(String s) {
+           System.out.println(s);
+         }
+       }
+
+      public class ArbolSobrecarga {
+        public static void main(String[] args) {
+
+          for(int i = 0; i < 5; i++) {
+            Arbol t = new Arbol(i);
+            t.info();
+            t.info("metodo sobrecargado");
+          }
+          new Arbol();
+        }
+      }
+       </pre>
+       <br>
+      <p><strong>Actividad 2.</strong> Crear un método sobrecargado, que haga que un árbol sea un pino:</p>
+       <br>
+
+       <hr>
+      <h1>Cuestionario</h1>
+      <hr>
+      <br>
+      <p><strong>Pregunta 1.</strong> Describa en que métodos se aplica la sobrecarga.</p>
+      <br>
+      <p><strong>Pregunta 2.</strong> Describa cuál es el método de clase.</p>
+      <br>
+      <p><strong>Pregunta 3.</strong> Justificar en que método sobrecargar, para crear un pino.</p>
+      <br>
+      </article>
+       <br>
+       <hr>
+       <br> 
+          
+    </section>
+
+       <aside>
+        <h1>Sugerencias</h1>
+        <hr>
+        <p><strong>Sugerencia 1. </strong> Compilar y ejecutar el programa presentado. Determinar el constructor para pensar si se utiliza para el proposito de crear el pino.</p>
+        <br>
+        
+       </aside>
+      <footer><p>Práctica 4</p><p class="derecha">Prof. José Sánchez Juárez</p></footer>
+   </section>
+</body>
+</html>

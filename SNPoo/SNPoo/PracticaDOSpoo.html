@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>Práctica 2 POO</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Práctica 2</header>
+ <nav>
+    
+     <p><img src="temario-icono.png" width=95% border=5></image></p>
+     
+     <p class="derecha"><a href="TemarioPOO.html">Temario<img src="iconoPoo.png" width=65% border=5></image></a></p>
+     
+     <p><a href="MaterialPoo.html"><img src="iconoPoo.png" width=90% border=5></image></a></p>
+         
+ </nav>
+
+  <section class="envoltura">
+    <h1 class="titulo">CLASES E INSTANCIAS DE CLASE</h1>
+
+    <section class="interna">
+      
+      <article>
+       
+       <h1>Objetivo</h1>
+       <hr>
+       <p>Se formarán clases a partir de los nombres. Se crearan objetos de cada una de las clases.</p>
+      <hr>
+      <h1>Actividades</h1>
+      <hr>
+      
+       <p>Las clases permiten que un diseñador de software considere los objetos como diferentes tipos de entidades. Visita
+objetos de esta manera nos permite utilizar los mecanismos de clasificación para categorizar estos tipos,
+definir jerarquías y comprometerse con las ideas de especialización y generalización de objetos.</p>
+       <br>
+       <p>Un objeto es una instancia de clase. Se pueden crear muchas instancias de clase. Crear una instancia de clase se llama instanciación. El término objeto e instancia de clase son intercambiables.</p>
+       <br>
+       <p><strong>Ejemplo.</strong> Compilar y ejecutar el siguiente programa:</p>
+       <br>
+       <pre>
+       public class Persona {
+         String nombre;
+         int edad;
+         String direccion;
+         public void setNombre(String b) {
+           nombre = b;
+         }
+         public void setEdad(int b) {
+           edad = b;
+         }
+         public String getNombre() {
+           return nombre;
+         }
+         public int getEdad() {
+           return edad;
+         }
+         public static void main(String[] args) {
+           Persona per = new Persona();
+           per.setPersona("Juan ");
+           per.setEdad(25);
+           System.out.println(per.getNombre() + "tiene " + per.getEdad() + " años");
+         }
+       }
+       </pre>
+       <br>
+       <p><strong>Crea la clase:</strong> Foco, con sus métodos respectivos. Que indique de manera textual en consola que esta prendido, apagado o la intensidad que tiene:</p>
+       <br>
+       <pre>
+       public class Foco {
+         
+         public void intensidad() 
+         
+         }
+         public void prender() {
+         
+         }
+         public void apagagar() {
+         
+         }
+         public static void main(String[] args) {
+         
+         }
+         
+       }
+
+       </pre>
+       <br>
+
+       <hr>
+      <h1>Cuestionario</h1>
+      <hr>
+      <br>
+      <p><strong>Pregunta 1.</strong> En el programa del ejemplo. Crea la instancia que reciba un nombre, edad y dirección. Entregar código.</p>
+      <br>
+      <p><strong>Pregunta 2.</strong> Crear tres instancias, una que este apagada, otra que este prendida y la otra que este en intensidad media. Entregar código.</p>
+      <br>
+      </article>
+       <br>
+       <hr>
+       <br> 
+          
+    </section>
+
+       <aside>
+        <h1>Sugerencias</h1>
+        <hr>
+        <p><strong>Sugerencia 1. </strong> Solamente usa los métodos que se presentan el programa del ejemplo.</p>
+        <br>
+        <p><strong>Sugerencia 2.</strong> Dividir el programaUNO en dos, considerando dos clases. La clase principal se declara como public y la otra no.</p>
+        <br>
+       </aside>
+      <footer><p>Práctica 2</p><p class="derecha">Prof. José Sánchez Juárez</p></footer>
+   </section>
+</body>
+</html>

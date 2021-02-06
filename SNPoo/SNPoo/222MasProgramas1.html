@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>222 Más programas1</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Capítulo 2</header>
+ <nav>
+    <!--<div class="contenedor">-->
+      <p><img src="curie.svg" align=center width=55% border=5></image>Clásico</p>
+
+      <p class="derecha"><a href="TemarioPOO.html">Classroom</a></p>
+      <p><a href="TemarioPOO.html">Temario</a></p>
+      <p><a href="41EnlacesPrac.html"><img src="EstudiarPracticandoIzq.svg" align=center width=55% border=5></image>Práctico</a></p>
+      <p><a href="41EnlacesHac.html"><img src="EstudiarHaciendo.svg" align=center width=55% border=5></image>Haciendo</a></p>
+    <!--</div>-->
+ </nav>
+  <section class="envoltura">
+    <h1 class="titulo">PROGRAMAS PARA DESCRIBIR UNO</h1>
+    <section class="interna">
+      
+      <article>
+       <h1>Sobrecarga</h1>
+       <hr>
+       <p><strong>Definición de sobrecarga.</strong> En Java es posible definir dos o más métodos dentro de la misma clase que tengan el mismo nombre, pero con sus listas de parámetros distintas. Cuando ocurre esto, se dice que los modos están sobrecargados y a este proceso se le denomina sobrecarga de modo.</p>
+       <br>
+       <p><strong>Como hace la selección.</strong>  Cuando se invoca un método sobrecargado, Java utiliza el tipo y/o el número de argumentos como guía para determinar la versión del método sobrecargado que realmente debe llamar.</p>
+        <br>
+        <p><strong>Programa 1.</strong></p>
+        <br>
+        <pre>
+       public class PruebaMetodoSobrecargado {
+         /** Metodo principal */
+         public static void main(String[] args) {
+           // Invoca el metodo max con paramatros int
+           System.out.println("El maximo entre 3 y 4 es " + max(3,4));
+           // Invoca el metodo max con paramatros double
+           System.out.println("El maximo entre 3.0 y 5.4 es " + max(3.0, 5.4));
+           // Invoca el metodo max con tres paramatros double
+           System.out.println("El maximo entre 3.0, 5.4, y 10.14 es " + max(3.0, 5.4, 10.14));
+         }
+         /** Regresa el max entre dos valores int */
+         public static int max(int num1, int num2) {
+           if (num1 > num2)
+             return num1;
+           else
+             return num2;
+         }
+         /** Encuentra el max entre dos valores double */
+         public static double max(double num1, double num2) {
+           if (num1 > num2)
+             return num1;
+         else
+           return num2;
+         }
+         /** Regresa la cantidad max de tres valores double */
+         public static double max(double num1, double num2, double num3) {
+           return max(max(num1, num2), num3);
+         }
+       }
+        </pre>
+        <br>
+        <p><strong>Programa 2.</strong></p>
+        <br>
+        <pre>
+       public class SobrecargaAmbigua {
+         public static void main(String[] args) {
+           System.out.println(max(1, 2));
+       }
+       public static double max(int num1, double num2) {
+         if (num1 > num2)
+           return num1;
+         else
+           return num2;
+       }
+       public static double max(double num1, int num2) {
+         if (num1 > num2)
+           return num1;
+         else
+           return num2;
+       }
+     }
+        </pre>
+        <br>
+        <p><strong>Programa 3.</strong></p>
+        <br>
+        <pre>
+       class CaracterAleatorio {
+       /** Genera un caracter aleatorio entre ch1 y ch2 */
+         public static char getCaracterAleatorio(char ch1, char ch2) {
+           return (char)(ch1 + Math.random() * (ch2 - ch1 + 1));
+         }
+         /** Genera una letra minuscula aleatoria */
+         public static char getMinusculaAleatorio() {
+           return getCaracterAleatorio( 'a' , 'z' );
+         }
+         /** Genera una letra mayuscula aleatoria */
+         public static char getMayusculaAleatorio() {
+           return getCaracterAleatorio( 'A' , 'Z' );
+         }
+         /** Genera un digito caracter */
+         public static char getCaracterDigitoAleatorio() {
+           return getCaracterAleatorio( '0' , '9' );
+         }
+         /** Genera un caracter aleatorio */
+         public static char getCaracterAleatorio() {
+           return getCaracterAleatorio( '\u0000' , '\uFFFF' );
+         }
+       }
+       public class CaracterAleatorioDriver {
+         /** Metodo principal */
+         public static void main(String[] args) {
+         final int NUM_DE_CARACTERES = 175;
+         final int CARACTERES_POR_LINEA = 25;
+         // Imprimi el caracter aleatorio entre 'a' y 'z', 25 chars por linea
+         for (int i = 0; i < NUM_DE_CARACTERES; i++) {
+           //char ch = CaracterAleatorio.getMinusculaAleatorio();
+           char ch = CaracterAleatorio.getMayusculaAleatorio();
+           if ((i + 1) % CARACTERES_POR_LINEA == 0)
+             System.out.println(ch);
+           else
+             System.out.print(ch);
+          }
+        }
+      }
+        </pre>
+        <br>
+        <p><strong>Programa 4.</strong></p>
+        <br>
+        <pre>
+       class Etiqueta {
+         Etiqueta(int marcador) {
+           System.out.println("Etiqueta() " + marcador + " ");
+         }
+       }
+       class Tarjeta {
+         Etiqueta tl = new Etiqueta(1); // Antes del constructor
+         Tarjeta() {
+         // Indicar que estamos en el constructor:
+           System.out.println("Tarjeta() ");
+           t3 = new Etiqueta(33); // Reiniciar t3
+         }
+         Etiqueta t2 = new Etiqueta(2); // Después del constructor
+         void f() {
+           System.out.println("f() ");
+         }
+         Etiqueta t3 = new Etiqueta(3); // Al final
+       }
+       public class OrdenDeInicializacion1 {
+         public static void main (String[] args) {
+           Tarjeta t = new Tarjeta();
+           t.f(); // Muestra que se ha acabado la construcción
+         }
+       }
+        </pre>
+        <br>
+        
+       </article>
+    </section>
+      <aside>
+            
+      <h1>Ejercicios</h1>
+        <hr>
+        <br>
+        <p><strong>Ejercicio 1.</strong> Comentar los programas del 1 al 4.</p>
+     <br>
+      <br>
+       <p><a href="222MasProgramas1.html">Más programas.</a></p>
+      <br>
+ <!--    <hr>
+     <h1>Práctica 4 (la correspondiente)</h1>
+        <hr>
+        <br>
+        <p>Realizar la siguiente prácticas presentarlas en un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p>
+      
+      <br>
+     <hr>
+     <h1>Realizar el proyecto (parcial 1)</h1>
+        <hr>
+        <br>
+        <p>Presentar el proyecto por medio de un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p> -->
+        </aside>
+      <footer><p>Clases y objetos: Tema 2.2.2</p><p class="derecha">Prof. José Sánchez Juárez.</p> </footer>
+   </section>
+</body>
+</html>

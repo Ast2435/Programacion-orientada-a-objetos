@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>Enlaces</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Capítulo 4</header>
+ <nav>
+    <!--<div class="contenedor">-->
+      <p><img src="curie.svg" align=center width=55% border=5></image>Clásico</p>
+
+      <p class="derecha"><a href="TemarioPOO.html">Classroom</a></p>
+      <p><a href="TemarioPOO.html">Temario</a></p>
+      <p><a href="41EnlacesPrac.html"><img src="EstudiarPracticandoIzq.svg" align=center width=55% border=5></image>Práctico</a></p>
+      <p><a href="41EnlacesHac.html"><img src="EstudiarHaciendo.svg" align=center width=55% border=5></image>Haciendo</a></p>
+    <!--</div>-->
+ </nav>
+  <section class="envoltura">
+    <h1 class="titulo">ENLACE ESTÁTICO Y ENLACE DINÁMICO</h1>
+    <section class="interna">
+      
+      <article>
+       <h1>Polimorfismo</h1>
+       <hr>
+       <p><strong>Definición de polimorfismo del diccionario de la real acedemia de la lengua española.</strong> En Química. Propiedad de los elementos y sus compuestos, que pueden cambiar de forma sin variar su naturaleza.</p>
+       <br>
+       <p><strong>Definición de polimorfismo en computación.</strong> Es cuando diferentes tipos de objetos responden de manera diferente a la llamada del mismo método.</p>
+       <br>
+       <p>Los términos polimorfismo y enlace dinámico están íntimamente relacionados, pero no son lo mismo. Es útil
+para conocer la diferencia. El polimorfismo es una forma de comportamiento. La vinculación dinámica es el mecanismo para eso
+comportamiento: cómo se implementa. Específicamente, el polimorfismo es cuando diferentes tipos de objetos responden
+de forma diferente a la misma llamada al método. El enlace dinámico es lo que hace la JVM para hacer coincidir un
+llamada al método polimórfico con un método particular.
+Justo antes de que la JVM ejecute una llamada a un método, determina el tipo de llamada real de la llamada al método.
+objeto. Si el objeto de llamada real es de la clase X, la JVM vincula el método de la clase X a la llamada del método. Si
+el objeto de llamada real es de la clase Y, la JVM vincula el método de la clase Y a la llamada del método. Después de la JVM
+enlaza el método apropiado a la llamada del método, la JVM ejecuta el método enlazado. Por ejemplo, tenga en cuenta
+la llamada al método <strong>obj.toString</strong> en la siguiente declaración:</p>
+     <br>
+     <pre>System.out.println(obj.toString());</pre>
+      <br>
+   <p class="cita"><cite>Introduction to programing in Java, John Dean and Raymond Dean, Pág. 520</cite></p>
+      <br>
+       <hr>
+       <h1>Enlace</h1>
+       <hr>
+       <p><strong>Definición de enlace.</strong> Es el vínculo entre la llamada a un método y la definición del método. El enlace identifica que método se ejecuta. Existen dos tipos de enlaces: enlace estático y enlace dinámico.</p>
+       <br>
+        
+        <h3>Ejemplo de código de enlace</h3>
+        <hr>
+         <p><strong>Código en java.</strong> El siguiente código es un ejemplo del vínculo entre el método y la definición del mismo:</p>
+         <pre>
+        <br>
+ public class Ab {
+    public void metodo1() {
+      System.out.println("Metodo 1");
+    }
+    public void metodo2() {
+      System.out.println("Metodo 2");
+    }
+    public static void main(string[] args) {
+      Ab obj = new Ab();
+      obj.metodo1 ();
+      obj.metodo2 ();
+    }
+  }
+         </pre>
+
+       <br>
+       <hr>
+       
+       <h1>Enlace estático</h1>
+       <hr>
+        <p><strong>Definición de enlace estático.</strong> El compilador identificará el método que se va a ejecutar en tiempo de compilación. Generalmente el enlace estático se aplica cuando se usa sobrecarga.</p>
+       <br>
+      <h3>Ejemplo de código de enlace estático</h3>
+        <hr>
+     <p><strong>Código en java.</strong> Se presenta el código que incluye sobrecarga:</p>
+     <br>
+     <pre>
+   public class Operacion {
+     public void suma(int x, int y) {
+       int z = x + y;
+       System.out.println("La suma es: " + x  " + " + y + " = " + z);
+     }
+     public void suma(double x, double y) {
+       double z = x + y;
+       System.out.println("La suma es: " + x " + " + y + " = " + z);
+     }
+     public static void main(String[] args) {
+       Operacion cal = new Operacion();
+       cal.suma(52,32);
+       cal.suma(32.3,26.5);
+     }
+   }
+     </pre>
+ </article>
+<br>
+<br>
+     
+      <article>
+       <hr>
+       <h1>Enlace dinámico</h1>
+       <hr>
+        <p><strong>Definición de enlace dinámico.</strong>
+La identificación del método se hace en tiempo de ejecución. Generalmente se usa cuando se utilizan superclases.</p>
+      <br>
+
+     <h3>Ejemplo de código de enlace dinámico</h3>
+        <hr>
+     <p><strong>Código en java.</strong> Se presenta el código que incluye superclases:</p>
+     <br>
+     <pre>
+   class Forma {
+     public void dibujar() {
+       System.out.println("Se dibuja una forma");
+     }
+   }
+   class Circulo extends Forma {
+     public void dibujar() {
+       System.out.println("Se dibuja un circulo");
+     }
+   }
+   class Triangulo extends Forma {
+     public void dibujar() {
+       System.out.println("Se dibuja un triangulo");
+     }
+   }
+   public class PruebaDriver {
+     public static void main(String[] args) {
+       Forma s;
+       s = new Forma();
+       s.dibujar();
+       
+       s = new Circulo();
+       s.dibujar();
+
+       s = new Triangulo();
+       s.dibujar();
+     }
+   }
+    </pre>
+      <br>
+       
+
+
+       <p class="cita"><cite>Beginnig HTML and CSS, Rob Larsen, Pág. 341</cite></p>
+    <br>
+     </article>
+    </section>
+      <aside>
+            
+      <h1>Ejercicios de código de enlaces</h1>
+        <hr>
+        <br>
+        <p><strong>Enlaces.</strong> Construir un programa basado en el ejemplo de enlaces. El programa debe contener una clase y dos o tres métodos diferentes, que después sean invocados.</p>
+     <br>
+      <hr>
+       <p><strong>Enlaces estáticos.</strong> Construir un programa basado en el ejemplo de enlaces estáticos. El programa debe contener una clase con dos o tres métodos, que después deben ser invocados usando sobrecarga.</p>
+       <br>
+       <hr>
+      <p><strong>Enlaces dinámicos.</strong> Construir un programa basado en el ejemplo de enlaces dinámicos. El programa debe hacer ladrar a un perro, mauyar a un gato y cantar a un canario.</p>
+      <br>
+ <!--    <hr>
+     <h1>Práctica 4 (la correspondiente)</h1>
+        <hr>
+        <br>
+        <p>Realizar la siguiente prácticas presentarlas en un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p>
+      
+      <br>
+     <hr>
+     <h1>Realizar el proyecto (parcial 1)</h1>
+        <hr>
+        <br>
+        <p>Presentar el proyecto por medio de un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p> -->
+        </aside>
+      <footer><p>Polimorfismo: Tema 4.1</p><p class="derecha">Prof. José Sánchez Juárez.</p> </footer>
+   </section>
+</body>
+</html>

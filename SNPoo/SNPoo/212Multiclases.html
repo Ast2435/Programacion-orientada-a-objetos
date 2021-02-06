@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>Multiclases</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Capítulo 2</header>
+ <nav>
+    <!--<div class="contenedor">-->
+      <p><img src="curie.svg" align=center width=55% border=5></image>Clásico</p>
+
+      <p class="derecha"><a href="TemarioPOO.html">Classroom</a></p>
+      <p><a href="TemarioPOO.html">Temario</a></p>
+      <p><a href="41EnlacesPrac.html"><img src="EstudiarPracticandoIzq.svg" align=center width=55% border=5></image>Práctico</a></p>
+      <p><a href="41EnlacesHac.html"><img src="EstudiarHaciendo.svg" align=center width=55% border=5></image>Haciendo</a></p>
+    <!--</div>-->
+ </nav>
+  <section class="envoltura">
+    <h1 class="titulo">MULTICLASES</h1>
+    <section class="interna">
+      
+      <article>
+       <h1>Multiclases</h1>
+       <hr>
+       <p><strong>Definición de multiclases.</strong> Incluso el sistema de aplicación orientado a objetos más simple tendrá múltiples clases relacionadas. Para el sistema universitario que se presenta identificamos y escribimos
+los esqueletos de cuatro clases: <strong>estudiante, instructor, miembro del personal y curso</strong>.
+En esta sección, veremos cómo estructurar las clases para tales casos.
+Consideremos la clase <strong>curso</strong>. Existe un curso en el catálogo de la escuela, con un nombre,
+ID del curso, breve descripción y número de créditos. Aquí hay una posible definición.</p>
+       <br>
+       
+    <h3>Ejemplo de código de multiclases</h3>
+        <hr>
+       <br>
+      <p><strong>Código en java.</strong> El siguiente código es un ejemplo del uso de multiclases:</p>
+    <br>
+     <pre>
+     public class Curso {
+       private String id;
+       private String nombre;
+       private int numeroOfCredito;
+       private String descripcion;
+       public Curso(String cursoId, String cursoNombre) {
+         id = cursoId;
+         nombre = cursoNombre;
+       }
+       public void setNumeroOfCredito(int credito) {
+         numeroOfCredito = credito;
+       }
+       public void setDescripcion(String cursoDescripcion) {
+         descripcion = cursoDescripcion;
+       }
+       public String getId() {
+         return id;
+       }
+       public String getNombre() {
+         return nombre;
+       }
+       public int getNumeroOfCredito() {
+         return numeroOfCredito;
+       }
+       public String getDescripcion() {
+       return descripcion;
+       }
+      }
+ </pre>
+   <br>
+   
+   <p>Un departamento selecciona del catálogo una serie de cursos para ofrecer cada semestre. Una sección es un curso ofrecido en un cierto semestre, que se lleva a cabo en un lugar determinado en ciertos días. (No nos preocuparemos del instructor por la clase, aforo, etc.) crea una clase para esto.
+Usaremos objetos String para almacenar el lugar, los días, la hora y el semestre. Así, nosotros tenemos tres campos denominados lugar, diasYtiempo y semestre con la semántica obvia.
+Claramente, esto es inadecuado: la clase no tiene el nombre y otros detalles del curso. Pero es redundante tener campos para estos porque la información está disponible en el objeto del curso correspondiente. Lo que se requiere es un campo que recuerde el curso correspondiente. Podemos hacer esto teniendo la siguiente declaración de campo.</p>
+   <br>
+   <pre>
+    private Curso curso;</pre>
+   <br>
+   <p>Cuando se crea la instancia de la Sección, este campo se puede inicializar.</p>
+  <br>
+    <pre>
+    public class Seccion {
+      private String semestre;
+      private String lugar;
+      private String diasYtiempo;
+      private Curso curso;
+      public Seccion(Curso elCurso, String elSemestre,
+        String elLugar, String elDiasYtiempo) {
+        curso = elCurso;
+        lugar = elLugar;
+        diasYtiempo = elDiasYtiempo;
+        semestre = elSemestre;
+      }
+      public String getLugar() {
+        return lugar;
+      }
+      public String getDiasYtiempo() {
+        return diasYtiempo;
+      }
+      public String getSemestre() {
+        return semestre;
+      }
+      public Curso getCurso() {
+        return curso;
+      }
+      public void setLugar(String nuevoLugar) {
+        lugar = nuevoLugar;
+      }
+      public void setDiasYtiempo(String nuevoDiasYtiempo) {
+        diasYtiempo = nuevoDiasYtiempo;
+      }
+    }
+   </pre>
+   <br>
+<p>¿Dónde creamos una instancia de Section? Una posibilidad es hacer esto en <strong>Curso</strong>.
+Supongamos que agregamos un nuevo método llamado crearSeccion en <strong>Curso</strong>, que
+acepta el semestre, el lugar, los días y la hora como parámetros y devuelve una instancia de un
+nuevo objeto de sección para el curso. Luego lo usaremos de la siguiente manera.</p>
+  <br>
+    <pre>
+    Curso cs350 = new Curso("CS 350", "Estructuras de Datos");
+    Seccion cs350Seccion1 = cs350.crearSeccion("Otoño 2004",
+      "Taller de Lectura 12", "T H 1-2:15");
+    Seccion cs350Seccion2 = cs350.crearSeccion("Otoño 2004",
+      "Taller de Lectura 25", "M W F 10-10:50");
+   </pre>
+   <br>
+   <p>Vayamos a la tarea de codificar el método crearSeccion. Se parece a lo siguiente:</p>
+   <br>
+    <pre>
+     public Seccion crearSeccion(String semestre, String lugar, String tiempo) {
+       return new Seccion(/* parametros */);
+     }
+    </pre>
+    <br>
+    <p>¿Cómo invocamos al constructor de <strong>Seccion</strong> desde el método crearSeccion? El problema es que aunque tenemos referencias al semestre, lugar, días y horas
+disponible en los parámetros de este método, necesitamos una referencia al objeto Curso a sí mismo. Este no es un parámetro explícito del método, sino el objeto Curso en el que
+el método crearSeccion es de hecho la referencia que necesitamos. Aquí el idioma
+viene en nuestra ayuda. En el método crearSeccion, la referencia al objeto que fue
+usado en su invocación está disponible a través de una palabra clave especial llamada <strong>this</strong>.
+En general, suponga que tenemos una clase <strong>C</strong> con un método m como se muestra a continuación. también
+se muestra otra clase <strong>C2</strong>, que tiene un método llamado m2 que requiere un objeto de tipo C como su único parámetro.</p>
+     <br>
+     <pre>
+     public void m(){
+       C2 c2 = new C2();
+       c2.m2(this);
+     }
+     </pre>
+     <p>La clase C:</p>
+     <br>
+     <pre>
+     public class C {
+       public void m() {
+       }
+     }
+     </pre>
+     <br>
+     <p>La clase C2:</p>
+     <br>
+     <pre>
+     public class C2 {
+       public void m2(C aC) {
+       }
+     }
+     </pre>
+     <br>
+     <p>Así que la clase C queda de la siguiente manera:</p>
+     <br>
+     <pre>
+     public class C {
+       public void m() {
+         C2 c2 = new C2();
+         c2.m2(this);
+       }
+     }
+     </pre>
+     <br>
+     <p>En lo anterior, <strong>this</strong> es una referencia que apunta al mismo objeto que c1. En resumen, el objeto puede referirse a sí mismo utilizando la palabra clave <strong>this</strong>.
+Continuando con el ejemplo de cursos y sus apartados, podemos codificar el método crearSeccion como se muestra a continuación.</p>
+     <br>
+     <pre>
+     public Section crearSeccion(String semestre, String lugar, String tiempo) {
+       return new Seccion(this, semestre, lugar, tiempo);
+     }
+     </pre>
+     <br>
+     <p>La palabra clave <strong>this</strong> obtiene la referencia al objeto del curso y se pasa al constructor de Seccion.
+Además de pasar una referencia a sí mismo a los métodos, podemos usar esto para obtener los
+campos del objeto, que son útiles para resolver conflictos. Por ejemplo,</p>
+      <br>
+      <pre>
+      class Seccion {
+        private String lugar;
+        public void setLugar(String lugar) {
+          this.lugar = lugar;
+        }
+      }
+      </pre>
+      <br>
+      <p>El lugar del identificador en el lado derecho de la asignación se refiere al parámetro formal;
+en el lado izquierdo tiene este prefijo y, por lo tanto, es una referencia al campo privado.</p>
+      <br>
+<p class="cita"><cite>Object-Oriented Analysis
+and Design, Sarnath Ramnath and Brahma Dathan, Pág. 24-28</cite></p>
+     <br>
+    
+       
+  <br>
+ 
+  
+       </article>
+    </section>
+      <aside>
+            
+      <h1>Ejercicios de multiclases</h1>
+        <hr>
+        <br>
+        <p><strong>Ejercicio 1. Clase.</strong> Construir las clases Estudiante, Instructor, miembroPersonal, Curso. Instancia objetos de cada una de las clases y crea variables de cada objeto.</p>
+     <br>
+      <hr>
+       <p><strong>Ejercicio 2. Multiclase.</strong> Construir un programa basado en el ejemplo de métodos. El programa debe contener una clase con dos o tres métodos, que después deben ser invocados.</p>
+       <br>
+              
+ <!--    <hr>
+     <h1>Práctica 4 (la correspondiente)</h1>
+        <hr>
+        <br>
+        <p>Realizar la siguiente prácticas presentarlas en un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p>
+      
+      <br>
+     <hr>
+     <h1>Realizar el proyecto (parcial 1)</h1>
+        <hr>
+        <br>
+        <p>Presentar el proyecto por medio de un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p> -->
+        </aside>
+      <footer><p>Clases y objetos: Tema 2.1.2</p><p class="derecha">Prof. José Sánchez Juárez.</p> </footer>
+   </section>
+</body>
+</html>

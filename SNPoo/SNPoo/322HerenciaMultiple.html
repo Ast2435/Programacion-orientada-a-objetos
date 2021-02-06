@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>321 Herencia múltiple</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Capítulo 3</header>
+ <nav>
+    <!--<div class="contenedor">-->
+      <p><img src="curie.svg" align=center width=55% border=5></image>Clásico</p>
+
+      <p class="derecha"><a href="TemarioPOO.html">Classroom</a></p>
+      <p><a href="TemarioPOO.html">Temario</a></p>
+      <p><a href="41EnlacesPrac.html"><img src="EstudiarPracticandoIzq.svg" align=center width=55% border=5></image>Práctico</a></p>
+      <p><a href="41EnlacesHac.html"><img src="EstudiarHaciendo.svg" align=center width=55% border=5></image>Haciendo</a></p>
+    <!--</div>-->
+ </nav>
+  <section class="envoltura">
+    <h1 class="titulo">HERENCIA MÚLTIPLE</h1>
+    <section class="interna">
+      
+      <article>
+       <h1>Superclase</h1>
+       <hr>
+       <br>
+       <p><strong>Superclase</strong> Esta clase es la base para heredar características y los métodos a las subclases. Por lo que a una superclase se le puede llamar clase base.</p>
+       <br> 
+       <p><strong>Herencia múltiple.</strong> Las características y métodos se transmiten de varias clases base (superclases) a una o varias subclases.</p>
+       <br>
+       <p><strong>El pardigma orientado a objetos.</strong> La herencia múltiple es una característica en este paradigma. Pero no quiere decir que todos los lenguajes que se pretenden ostentar como orientados a objetos, aprovechen el uso de la herencia múltiple.</p>
+       <br>
+       
+       <p><strong>Programa 1 en C++.</strong> Con herencia jerarquica.</p>
+       <br>
+       <pre>
+       #include &lt;iostream&gt;
+       using namespace std;
+
+       class Estudiante {
+         protected:
+           int numeroInscripcion;
+         protected:
+           void getNumero(int);
+           void setNumero(void);
+       };
+
+       void Estudiante :: getNumero(int a) {
+         numeroInscripcion = a;
+       }
+
+       void Estudiante :: setNumero() {
+         cout << "Numero de inscripcion: " << numeroInscripcion << "\n" ;
+       }
+
+       class Prueba : public Estudiante {
+         protected:
+           float sub1;
+           float sub2;
+         public:
+           void getMarca(float, float);
+           void setMarca(void);
+       };
+
+       void Prueba :: getMarca(float b, float c) {
+         sub1 = b;
+         sub2 = c;
+       }
+
+       void Prueba :: setMarca() {
+         cout << "Marca en sub1 = " << sub1 << "\n" ;
+         cout << "Marca en sub2 = " << sub2 << "\n" ;
+       }
+
+       class Resultado : public Prueba {
+           float total;
+         public:
+           void mostrar(void);
+       };
+
+       void Resultado :: mostrar() {
+         total = sub1 + sub2;
+         setNumero();
+         setMarca();
+         cout << "Total = " << total << "\n" ;
+       }
+
+       int main() {
+         Resultado estudiante1;
+
+         estudiante1.getNumero(111);
+         estudiante1.getMarca(75.0, 59.5);
+
+         estudiante1.mostrar();
+
+         return 0;
+       }
+       </pre>
+       <br>
+       <p><strong>Programa 2 en C++.</strong> Con herencia múltiple.</p>
+       <br>
+       <pre>
+       #include &lt;iostream&gt;
+       using namespace std;
+
+       class M {
+         protected:
+           int m;
+         public:
+           void getM(int);
+       };
+
+       class N {
+         protected:
+           int n;
+         public:
+           void getN(int);
+       };
+
+       class P : public M, public N {
+         public:
+           void mostrar(void);
+       };
+
+       void M :: getM(int x) {
+         m = x;
+       }
+
+       void N :: getN(int y) {
+         n = y;
+       }
+
+       void P :: mostrar(void) {
+         cout << "m = " << m << "\n" ;
+         cout << "n = " << n << "\n" ;
+         cout << "m * n = " << m * n << "\n" ;
+       }
+
+       int main() {
+         P p;
+  
+         p.getM(10);
+         p.getN(20);
+         p.mostrar();
+
+         return 0;
+       }
+       </pre>
+       <br>
+       <br>
+       <br>
+       <p><strong>Diagrama de clase del programa 1.</strong> Herencia jerarquica.</p>
+       <br>
+       <br>
+       <img src="HeEstC++.svg" align=center width=55% border=5></image>
+       <br>
+       <br>
+       <p><strong>Diagrama de clase del programa 2.</strong> Herencia múltiple.</p>
+       <br>
+       <br>
+       <img src="HePC++.svg" align=center width=70% border=5></image>
+       <br>
+       <br>
+       </article>
+    </section>
+      <aside>
+      
+      <h1>Preguntas</h1>
+        <hr>
+        <br>
+        <p><strong>Pregunta 1.</strong> Describir la herencia múltiple.</p>
+        <br>
+        <p><strong>Pregunta 2.</strong> Describir la herencia jerárquica</p>
+        <br>
+        <p><strong>Pregunta 3.</strong> Describir la diferencia entre la herencia simple, la herencia jerárquica y la herencia múltiple.</p>
+        <br>
+        <hr>
+      <h1>Ejercicios</h1>
+        <hr>
+        <br>
+       <p><strong>Ejercicio 1.</strong> Usar la clase VentasPersona para hacerla subclase de la superclase Persona.</p>
+       <br>
+       <pre>
+       public class VentasPersona {
+         private String nombre;
+         private double ventas = 0.0; // ventas al día
+
+         public VentasPersona(double ventas) {
+           this.ventas = ventas;
+         }
+         
+       } // fin de la clase VentasPersona
+        </pre>
+      <br>
+         <hr>
+         <br>
+        <p><strong>Ejercicio 2.</strong> Incluirla en el diagrama de clases de Persona.</p>
+     <br>
+        
+        
+     
+ <!--    <hr>
+     <h1>Práctica 4 (la correspondiente)</h1>
+        <hr>
+        <br>
+        <p>Realizar la siguiente prácticas presentarlas en un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p>
+      
+      <br>
+     <hr>
+     <h1>Realizar el proyecto (parcial 1)</h1>
+        <hr>
+        <br>
+        <p>Presentar el proyecto por medio de un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p> -->
+        </aside>
+      <footer><p>Relación de objetos: Tema 3.2.2</p><p class="derecha">Prof. José Sánchez Juárez.</p> </footer>
+   </section>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>222 Más programas</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Capítulo 2</header>
+ <nav>
+    <!--<div class="contenedor">-->
+      <p><img src="curie.svg" align=center width=55% border=5></image>Clásico</p>
+
+      <p class="derecha"><a href="TemarioPOO.html">Classroom</a></p>
+      <p><a href="TemarioPOO.html">Temario</a></p>
+      <p><a href="41EnlacesPrac.html"><img src="EstudiarPracticandoIzq.svg" align=center width=55% border=5></image>Práctico</a></p>
+      <p><a href="41EnlacesHac.html"><img src="EstudiarHaciendo.svg" align=center width=55% border=5></image>Haciendo</a></p>
+    <!--</div>-->
+ </nav>
+  <section class="envoltura">
+    <h1 class="titulo">PROGRAMAS PARA DESCRIBIR</h1>
+    <section class="interna">
+      
+      <article>
+       <h1>Sobrecarga</h1>
+       <hr>
+       <p><strong>Definición de sobrecarga.</strong> En Java es posible definir dos o más métodos dentro de la misma clase que tengan el mismo nombre, pero con sus listas de parámetros distintas. Cuando ocurre esto, se dice que los modos están sobrecargados y a este proceso se le denomina sobrecarga de modo.</p>
+       <br>
+       <p><strong>Como hace la selección.</strong>  Cuando se invoca un método sobrecargado, Java utiliza el tipo y/o el número de argumentos como guía para determinar la versión del método sobrecargado que realmente debe llamar.</p>
+        <br>
+        <p><strong>Programa 1.</strong></p>
+        <br>
+        <pre>
+        class Jarra {
+          Jarra (int marcador) {
+            System.out.println("Jarra( " + marcador + ") ");
+          }
+          void f(int marcador) {
+            System.out.println("f( " + marcador + ") ");
+          }
+        }
+        public class Jarras {
+          Jarra j1;
+          Jarra j2;
+          {
+            j1 = new Jarra(1) ;
+            j2 = new Jarra (2) ;
+            System.out.println("j1 y j2 inicializadas");
+          }
+          Jarras() {
+            System.out.println ("Jarras() ") ;
+          }
+          public static void main(String[] args) {
+            System.out.println("Dentro de main()");
+            Jarras x = new Jarras();
+          }
+        }
+        </pre>
+        <br>
+        <p><strong>Programa 2.</strong></p>
+        <br>
+        <pre>
+        public class SobrecargaPrimitiva {
+          // los booleanos no pueden convertirse automáticamente
+          static void visualizar(String s) {
+            System.out.println(s);
+          }
+
+          void f1(char x) {visualizar("f1(char) " ); }
+          void f1(byte x) {visualizar("f1(byte) " ); }
+          void f1(short x) {visualizar("f1(short) " ); }
+          void f1(int X) {visualizar("f1(int) " ); }
+          void f1(long x) {visualizar("f1(long) " ); }
+          void f1(float x) { visualizar("f1(float) " ); }
+          void f1(double x) { visualizar("f1(double) " ); }
+
+          void f2(byte x) { visualizar("f2(byte) " ); }
+          void f2(short x) { visualizar("f2(short) " ); }
+          void f2(int x) { visualizar("f2(int) " ); }
+          void f2(long x) { visualizar("f2(long) " ); }
+          void f2(float x) { visualizar("f2(float) " ); }
+          void f2(double x) { visualizar("f2(double) " ); }
+
+          void f3(short x) {visualizar("f3(short) " ); }
+          void f3(int x) {visualizar("f3(int) " ); }
+          void f3(long x) {visualizar("f3(long) " ); }
+          void f3(float x) {visualizar("f3(float) " ); }
+          void f3(double x) {visualizar("f3(double) " ); }
+
+          void f4(int x) {visualizar("f4(int) " ); }
+          void f4(long x) {visualizar("f4(long) " ); }
+          void f4(float x) {visualizar("f4(float) " ); }
+          void f4(double x) {visualizar("f4(double) " ); }
+
+          void f5(long x) {visualizar("f5(long) " ); }
+          void f5(float x) {visualizar("f5(float) " ); }
+          void f5(double x) {visualizar("f5(double) " ); }
+
+          void f6(float x) {visualizar("f6(float) " ); }
+          void f6(double x) {visualizar("f6(double) " ); }
+
+          void f7(double x) {visualizar("f7(double) " ); }
+
+          void pruebaValoresConstante() {
+            visualizar("Probando con el 5");
+            f1(5);f2(5);f3(5);f4(5);f5(5);f7(5);
+          }
+          void pruebaChar() {
+            char x = 'x';
+            visualizar("parametro char: " );
+            f1(x);f2(x);f3(x);f4(x);f5(x);f7(x);
+          }
+          void pruebaByte() {
+            byte x = 0;
+            visualizar ("parametro byte : ");
+            f1(x);f2(x);f3(x);f4(x);f5(x);f6(x);f7(x);
+          }
+          void pruebaShort() {
+            short x = 0;
+            visualizar("parametro short:");
+            f1(x);f2(x);f3(x);f4(x);f5(x);f7(x);
+          }
+          void pruebaInt() {
+            int x = 0;
+            visualizar("parametro int: ");
+            f1(x);f2(x);f3(x);f4(x);f5(x);f6(x);f7(x);
+          }
+          void pruebaLong ( ) {
+            long x = 0;
+            visualizar("parametro long: " );
+            f1(x);f2(x);f3(x);f4(x);f5(x);f7(x);
+          }
+          void pruebaFloat() {
+            float x = 0;
+            visualizar("parametro float:");
+            f1(x);f2(x);f3(x);f4(x);f5(x);f7(x);
+          }
+          void pruebaDouble( ) {
+            double x = 0;
+            visualizar("parametro double:");
+            f1(x);f2(x);f3(x);f4(x);f5(x);f7(x);
+          }
+          public static void main (String[] args) {
+            SobrecargaPrimitiva p =
+            new SobrecargaPrimitiva();
+  
+            p.pruebaValoresConstante();
+            p.pruebaChar();
+            p.pruebaByte();
+            p.pruebaShort();
+            p.pruebaInt();
+            p.pruebaLong();
+            p.pruebaFloat();
+            p.pruebaDouble();
+          }
+        }
+        </pre>
+        <br>
+        <p><strong>Programa 3.</strong></p>
+        <br>
+        <pre>
+        public class Degradacion {
+          static void visualizar(String s) {
+            System.out.println(s);
+          }
+  
+          void f1(char x) {visualizar("f1(char) " ); }
+          void f1(byte x) {visualizar("f1(byte) " ); }
+          void f1(short x) {visualizar("f1(short) " ); }
+          void f1(int X) {visualizar("f1(int) " ); }
+          void f1(long x) {visualizar("f1(long) " ); }
+          void f1(float x) { visualizar("f1(float) " ); }
+          void f1(double x) { visualizar("f1(double) " ); }
+
+          void f2(byte x) { visualizar("f2(byte) " ); }
+          void f2(short x) { visualizar("f2(short) " ); }
+          void f2(int x) { visualizar("f2(int) " ); }
+          void f2(long x) { visualizar("f2(long) " ); }
+          void f2(float x) { visualizar("f2(float) " ); }
+          void f2(double x) { visualizar("f2(double) " ); }
+
+          void f3(short x) {visualizar("f3(short) " ); }
+          void f3(int x) {visualizar("f3(int) " ); }
+          void f3(long x) {visualizar("f3(long) " ); }
+          void f3(float x) {visualizar("f3(float) " ); }
+          void f3(double x) {visualizar("f3(double) " ); }
+
+          void f4(int x) {visualizar("f4(int) " ); }
+          void f4(long x) {visualizar("f4(long) " ); }
+          void f4(float x) {visualizar("f4(float) " ); }
+          void f4(double x) {visualizar("f4(double) " ); }
+
+          void f5(long x) {visualizar("f5(long) " ); }
+          void f5(float x) {visualizar("f5(float) " ); }
+          void f5(double x) {visualizar("f5(double) " ); }
+
+          void f6(float x) {visualizar("f6(float) " ); }
+          void f6(double x) {visualizar("f6(double) " ); }
+
+          void f7(double x) {visualizar("f7(double) " ); }
+
+          void pruebaDouble() {
+            double x = 0;
+            visualizar("parametro double : " );
+            f1(x);f2((float)x);f3((long)x);f4((int)x);
+            f5((short)x);f6((byte)x);f7((char)x);
+          }
+          public static void main(String[] args) {
+            Degradacion p = new Degradacion();
+            p.pruebaDouble();
+          }
+        }
+        </pre>
+        <br>
+        <p><strong>Programa 4.</strong></p>
+        <br>
+        <pre>
+        public class Tiempo {
+          private int horas, minutos, segundos;
+          public Tiempo(int h, int m, int s) {
+            horas = h;
+            minutos = m;
+            segundos = s;
+          }
+
+          public void imprimirTiempo() {
+            System.out.printf("%02d:%02d:%02d\n", horas, minutos, segundos);
+          } // fin de imprimirTiempo
+
+          public static void main(String[] args) {
+            Tiempo tiempo = new Tiempo(3, 59, 0);
+            tiempo.imprimirTiempo();
+          } // fin de main
+        } // fin de la clase tiempo
+        </pre>
+        <br>
+        
+       </article>
+    </section>
+      <aside>
+            
+      <h1>Ejercicios</h1>
+        <hr>
+        <br>
+        <p><strong>Ejercicio 1.</strong> Comentar los programas del 1 al 4.</p>
+     <br>
+      <br>
+       <p><a href="222MasProgramas1.html">Más programas.</a></p>
+      <br>
+ <!--    <hr>
+     <h1>Práctica 4 (la correspondiente)</h1>
+        <hr>
+        <br>
+        <p>Realizar la siguiente prácticas presentarlas en un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p>
+      
+      <br>
+     <hr>
+     <h1>Realizar el proyecto (parcial 1)</h1>
+        <hr>
+        <br>
+        <p>Presentar el proyecto por medio de un formato de power point y enviarla por correo.</p>
+       <p>Ejercicios. Práctica. Proyecto.</p> -->
+        </aside>
+      <footer><p>Clases y objetos: Tema 2.2.2</p><p class="derecha">Prof. José Sánchez Juárez.</p> </footer>
+   </section>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <Meta charset="utf-8">
+    <title>Práctica 3 POO</title>
+    <script src=".js"></script>
+    <link rel="stylesheet" href="PresentacionCapitulo.css">
+  </head>
+<body>
+<header>Programación orientada a objetos<br>Práctica 3</header>
+ <nav>
+    
+     <p><img src="temario-icono.png" width=95% border=5></image></p>
+     
+     <p class="derecha"><a href="TemarioPOO.html">Temario<img src="iconoPoo.png" width=65% border=5></image></a></p>
+     
+     <p><a href="MaterialPoo.html"><img src="iconoPoo.png" width=90% border=5></image></a></p>
+         
+ </nav>
+
+  <section class="envoltura">
+    <h1 class="titulo">USO DE VARIABLES Y MÉTODOS DE CLASE</h1>
+
+    <section class="interna">
+      
+      <article>
+       
+       <h1>Objetivo</h1>
+       <hr>
+       <p>Se creara una clase, donde se aplicará el uso de las variables y métodos de clase.</p>
+      <hr>
+      <h1>Actividades</h1>
+      <hr>
+      <br>
+      <p><strong>Variables de clase.</strong> Cuando piensa en una solución orientada a objetos, ¿qué visualiza? Basado en lo que ha aprendido hasta este punto, debería ver objetos separados, cada uno con su propio conjunto de datos y comportamientos (variable de instancia y métodos de instancia, respectivamente). Esa es una imagen válida, pero debe tener en cuenta que, además de datos y comportamientos que son específicos de objetos individuales, también puede tener datos y comportamientos relacionados con toda una clase. Dado que se relacionan con una clase completa, dichos datos y comportamientos se denominan variables de clase y métodos de clase, respectivamente.</p>
+      <br>
+       <p>Las clases permiten que un diseñador de software considere los objetos como diferentes tipos de entidades. Visita
+objetos de esta manera nos permite utilizar los mecanismos de clasificación para categorizar estos tipos,
+definir jerarquías y comprometerse con las ideas de especialización y generalización de objetos.</p>
+       <br>
+       <p>Para convertir una variable en una variable de clase, use el modificador <strong>static</strong> en su declaración. El modificador <strong>static</strong> es
+por qué muchos programadores usan el término "variable estática" cuando hablan de variables de clase. Asimismo, desde
+las constantes de clase y los métodos de clase también usan el modificador <strong>static</strong>, muchos programadores usan los términos <strong>static</strong>
+método constante y estático. Utilizaremos los términos variable de clase, constante de clase y método de clase, ya que
+esos son los términos que utiliza Sun.
+Aquí está la sintaxis para una declaración de declaración de variable de clase:</p>
+       <br>
+       <p><strong>Forma general de la declaración de variables de clase.</strong></p>
+       <br>
+       <pre>
+       private-o-public static tipo nombre-variable;
+       </pre>
+       <br>
+       <p>Como sabe, cada vez que se usa <strong>new</strong> se crea una copia separada de todas las variables de instancia para cada objeto. Las variables de clase son diferentes. Para una clase en particular, solo hay una copia de cada variable de clase y todos los objetos comparten
+esa única copia. Por lo tanto, debe usar variables de clase para describir las propiedades de los objetos de una clase que necesitan
+ser compartido por todos los objetos. Por ejemplo, considere nuevamente el problema de simular el crecimiento del ratón. En nuestro
+programas de <strong>Raton.java</strong> anteriores, realizamos un seguimiento de los datos pertinentes a cada ratón individual: la tasa de crecimiento de un ratón,
+la edad de un ratón y el peso de un ratón. Para un programa de simulación más útil, probablemente también desee
+realizar un seguimiento de los datos del grupo y los datos ambientales comunes. Por ejemplo:</p>
+       <br>
+       <p><strong>Ejemplo.</strong> Declaración de variables de clase:</p>
+       <br>
+       <pre>
+       private static int contadorRaton;
+       private static Raton4 ratonMasJoven;
+       private static double promedioVidaSpan = 18; // meses 
+       private static int simulacionDuracion = 730; // dias 
+       private static String investigador;
+       private static boolean ruidoOn;
+       </pre>
+       <br>
+       <p><strong>Métodos de clase:</strong> Los métodos de clase, como las variables de clase, se relacionan con la clase como un todo y no se relacionan con objetos individuales.
+Como tal, si necesita realizar una tarea que involucre a la clase como un todo, entonces debe implementar y
+utilizar un método de clase. Los métodos de clase definidos en la clase Java API <strong>Math</strong>; por ejemplo,
+<strong>Math.round</strong> y <strong>Math.sqrt</strong>. Los métodos de clase
+a menudo acceden a variables de clase, y al escribir sus propios métodos de clase, tendrá la oportunidad de ver cómo
+acceder a las variables de clase que ha definido.</p>
+       <br>
+       <p>Si desea que todas las instancias de una clase compartan datos, use variables estáticas, también conocidas como
+variables de clase. Las variables estáticas almacenan valores para las variables en una ubicación de memoria común.
+Debido a esta ubicación común, si un objeto cambia el valor de una variable estática, todos
+los objetos de la misma clase se ven afectados. Java admite métodos estáticos y variables estáticas.
+Los métodos estáticos <strong>(métodos de clase)</strong> se pueden llamar sin crear una instancia de la clase. </p>
+       <br>
+       <p><strong>Ejemplo 2.</strong> El método de clase es numeroDeObjeto:</p>
+       <br>
+       <pre>
+       class Circulo2 {
+         /** El radio del circulo */
+         double radio;
+         /** El número de objeto creado */
+         static int numeroDeObjeto = 0;
+           /** Constructor de un circulo con radio 1 */
+         Circulo2() {
+           radio = 1.0;
+           numeroDeObjeto++;
+         }
+         /** Constructor de un circulo con un radio especifico */
+         Circulo2(double radioNuevo) {
+           radio = radioNuevo;
+           numeroDeObjeto++;
+         }
+         /** Retorno de numeroDeObjeto */
+         static int getNumeroDeObjeto() {
+           return numeroDeObjeto;
+         }
+         /** Retorno del área del ciculo */
+         double getArea() {
+         return radio * radio * Math.PI;
+         }
+       }
+
+       public class TestCirculo2 {
+         /** Metodo main */
+         public static void main(String[] args) {
+           System.out.println("Antes de crear el objecto");
+           System.out.println("El numero del objeto Circulo es " +
+             Circulo2.numeroDeObjeto);
+
+           // Crear c1
+           Circulo2 c1 = new Circulo2();
+
+           // Desplegar c1 ANTES DE crear c2
+           System.out.println("\nDespues de crear c1");
+           System.out.println("c1: radio (" + c1.radio +
+               ") y el numero de objeto circulo (" +
+                c1.numeroDeObjeto + ")");
+           // Crear c2
+           Circulo2 c2 = new Circulo2(5);
+           // Modificar c1
+           c1.radio = 9;
+           // Desplegar c1 y c2 DESPUES c2 fue creado
+           System.out.println("\nDespues de crear c2 y modificar c1");
+           System.out.println("c1: radio (" + c1.radio +
+            ") y numero de objeto Circulo (" +
+           c1.numeroDeObjeto + ")");
+           System.out.println("c2: radio (" + c2.radio +
+             ") y numero de objeto Circulo (" +
+           c2.numeroDeObjeto + ")");
+         }
+       }
+       </pre>
+       <br>
+
+       <hr>
+      <h1>Cuestionario</h1>
+      <hr>
+      <br>
+      <p><strong>Pregunta 1.</strong> En el programa del ejemplo. 2, ¿cuál es la variable de clase? Justificar su respuesta.</p>
+      <br>
+      <p><strong>Pregunta 2.</strong> ¿Por que se dice que el método numeroDeObjeto, es método de clase?</p>
+      <br>
+      <p><strong>Pregunta 3.</strong> ¿Cómo se invoca a un método de clase?</p>
+      <br>
+      </article>
+       <br>
+       <hr>
+       <br> 
+          
+    </section>
+
+       <aside>
+        <h1>Sugerencias</h1>
+        <hr>
+        <p><strong>Sugerencia 1. </strong> Compilar y ejecutar el programa del ejemplo 2. Fijarse en la salida cuando se numera el objeto.</p>
+        <br>
+        
+       </aside>
+      <footer><p>Práctica 3</p><p class="derecha">Prof. José Sánchez Juárez</p></footer>
+   </section>
+</body>
+</html>
